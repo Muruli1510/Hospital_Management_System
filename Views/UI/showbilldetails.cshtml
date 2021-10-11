@@ -1,0 +1,83 @@
+﻿@model IEnumerable<Entity_Model_Layer.Models.BillDatum>
+
+@{
+    ViewData["Title"] = "showbilldetails";
+}
+
+<h1>Bill Details</h1>
+
+
+<table class="table" border="1" bgcolor="skyblue">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BillNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DoctorId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DoctorFees)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoomCharge)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LabFees)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalDays)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalAmount)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BillNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DoctorId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DoctorFees)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomCharge)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LabFees)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalDays)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalAmount)
+                </td>
+                <td>
+                    @*<a asp-action="Edit" asp-route-id="@item.BillNo">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.BillNo">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.BillNo">Delete</a>*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-action="showpatientdetails">Back to List</a>

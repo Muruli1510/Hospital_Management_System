@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewData["Title"] = "validatepid";
+}
+
+<h1 style="text-align:center">Validate Patient Id</h1>
+<br />
+<p style="text-align:center; color:tomato ">@ViewBag.err</p>
+<br />
+<div class="container">
+    @using (Html.BeginForm("validatepid1", "UI", FormMethod.Get))
+    {
+        <p>
+            Enter Patient ID: @Html.TextBox("patientid")
+            <input type="submit" value="Submit" />
+        </p>
+    }
+</div>

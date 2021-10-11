@@ -1,0 +1,106 @@
+﻿@model Entity_Model_Layer.Models.Patient
+@*@model IEnumerable<Entity_Model_Layer.Models.Doctor>*@
+
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<h1>Create</h1>
+
+<h4>Patient</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="PName" class="control-label">Patient Name</label>
+                <input asp-for="PName"  pattern="[A-Z]{1}[a-z]{1,15}" class="form-control" title="Name should start with capital letter and it should be only characters" required />
+                <span asp-validation-for="PName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AGe" class="control-label">Patient Age</label>
+                <input asp-for="AGe" min="2" max="150" class="form-control" required/>
+                <span asp-validation-for="AGe" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PWeight" class="control-label">Patient Weight</label>
+                <input asp-for="PWeight" class="form-control" min="5" max="180"required />
+                <span asp-validation-for="PWeight" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Gender" class="control-label" >Patient Gender</label>
+                <ul>
+                    <li>
+                        <label class="radio_wrap">
+                            <input type="radio" name="gender" value="M" class="input_radio" title="Please select the Gender" required>
+                            <span>Male</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="radio_wrap">
+                            <input type="radio" name="gender" value="F" class="input_radio" title="Please select the Gender" required>
+                            <span>Female</span>
+                        </label>
+                </ul>
+                @*<input asp-for="Gender" class="form-control" />
+                <span asp-validation-for="Gender" class="text-danger"></span>*@
+            </div>
+            <div class="form-group">
+                <label asp-for="PAddress" class="control-label">Patient Address</label>
+                <input asp-for="PAddress" class="form-control" title="Please enter the address" required/>
+                <span asp-validation-for="PAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PType" class="control-label">Patient Type</label>
+                <ul>
+                    <li>
+                        <label class="radio_wrap">
+                            <input type="radio" name="Patient type" value="I" class="input_radio" required>
+                            <span>InPatient</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="radio_wrap">
+                            <input type="radio" name="Patient type" value="O" class="input_radio" required>
+                            <span>OutPatient</span>
+                        </label>
+                </ul>
+                @*<input asp-for="PType" class="form-control" />
+        <span asp-validation-for="PType" class="text-danger"></span>*@
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber" class="control-label">Phone number</label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Disease" class="control-label">Disease</label>
+                <input asp-for="Disease" class="form-control" required/>
+                <span asp-validation-for="Disease" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Available Doctors</label>              
+            </div>
+            <div class="form-group">
+                <label asp-for="DoctorId" class="control-label"></label>
+                <select asp-for="DoctorId" name="DoctorId" class="form-control" asp-items="(@ViewBag.Doctorlist)"></select>
+            
+
+            </div>
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

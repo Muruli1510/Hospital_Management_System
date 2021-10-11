@@ -1,0 +1,39 @@
+﻿@model Entity_Model_Layer.Models.Outpatient
+
+@{
+    ViewData["Title"] = "insertoutpatient";
+}
+
+<h1>Enter Out Patient details</h1>
+
+<hr />
+<h3 style="text-align:center">Please note down your Patient ID:@ViewBag.OpId</h3>
+<hr />
+
+<div class="row justify-content-md-center container">
+    <p style="text-align:center; color:tomato ">@ViewBag.err</p>
+    <br />
+    <div class="col-md-4">
+        <form asp-action="insertoutpatient">
+            <div asp-validation-summary="ModelOnly" class="text-danger">Patient Id:</div>
+            <div class="form-group">
+                <label asp-for="OpId" class="control-label">Patient Id</label>
+                @Html.TextBox("Patient Id", (object)ViewBag.OpId, new { @readonly = true })
+            </div>
+            <div class="form-group">
+                <label asp-for="TreatmentDate" class="control-label">Treatment Date</label>
+                <input asp-for="TreatmentDate" type="date" class="form-control" />
+                <span asp-validation-for="TreatmentDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

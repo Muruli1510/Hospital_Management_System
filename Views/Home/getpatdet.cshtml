@@ -1,0 +1,100 @@
+﻿@model IEnumerable<Entity_Model_Layer.Models.Patient>
+
+@{
+    ViewData["Title"] = "getpatdet";
+}
+
+<h1>Patients Details</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+    @*<label class="control-label">Enter Patient ID</label>*@
+    @*<input type="number" id="PatientId" name="PatientId" placeholder="Search.." pattern="[0-9]{3}">
+    <a asp-action="Details" name="PatientId" asp-route-PatientId="model.PatientId">Details</a>*@
+    @using (Html.BeginForm("Details", "Home", FormMethod.Get))
+    {
+      <p>
+        Search Patient: @Html.TextBox("PatientId")
+        <input type="submit" value="Search" />
+      </p>
+    }
+</p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.PatientId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AGe)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PWeight)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Gender)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PAddress)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PhoneNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Disease)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Doctor)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PatientId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AGe)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PWeight)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Gender)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PAddress)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PhoneNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Disease)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DoctorId)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-PatientId="@item.PatientId">Edit</a> 
+                        @*<a asp-action="Details" asp-route-PatientId="@item.PatientId">Details</a> |*@
+                        @*<a asp-action="Delete" asp-route-id="@item.PatientId">Delete</a>*@
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>

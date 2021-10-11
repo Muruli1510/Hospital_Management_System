@@ -1,0 +1,50 @@
+﻿@model Entity_Model_Layer.Models.InPatient
+
+@{
+    ViewData["Title"] = "insertinpatient";
+}
+
+<h1 style="text-align:center">Enter In Patient details</h1>
+
+
+<hr />
+<h3 style="text-align:center">Please note down your Patient ID:@ViewBag.IpId</h3>
+<br />
+<p style="text-align:center; color:tomato ">@ViewBag.err</p>
+<br />
+<div class="row justify-content-md-center">
+    <div class="col-md-4">
+        <form asp-action="insertinpatient" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="IpId" class="control-label">Patient Id</label>
+                @Html.TextBox("Patient Id", (object)ViewBag.IpId, new { @readonly = true })
+            </div>
+            <div class="form-group">
+                <label asp-for="AdmissionDate" class="control-label">Admission Date</label>
+                <input asp-for="AdmissionDate" type="date" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" class="form-control" />
+                <span asp-validation-for="AdmissionDate" class="text-danger"></span>      
+            </div>
+        <div class="form-group">
+            <label asp-for="DischargeDate" class="control-label">Discharge Date</label>  
+            <input asp-for="DischargeDate" type="date" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" class="form-control" />
+        <span asp-validation-for="DischargeDate" class="text-danger"></span>
+        </div>
+            <div class="form-group">
+                <label asp-for="RoomNo" class="control-label">Roon No</label>
+                <select asp-for="RoomNo" name="RoomNo" class="form-control" asp-items="@(new SelectList(@ViewBag.RoomNos,"RoomNo"))"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="showpatientdetails">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

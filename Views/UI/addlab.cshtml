@@ -1,0 +1,49 @@
+﻿@model Entity_Model_Layer.Models.Lab
+
+@{
+    ViewData["Title"] = "addlab";
+}
+
+<h1>addlab</h1>
+
+<h4>Lab</h4>
+<hr />
+
+     @*@using (Html.BeginForm("addlab", "UI", FormMethod.Get))
+     {
+      <p>
+        Search Patient: @Html.TextBox("PatientId")
+        <input type="submit" value="Search" />
+      </p>
+     }*@
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="addlab" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                @*<div class="form-group">
+                    <label asp-for="TestId" class="control-label"></label>
+                    <input asp-for="TestId" class="form-control" />
+                    <span asp-validation-for="TestId" class="text-danger"></span>
+                </div>*@
+            <div class="form-group">
+                <label asp-for="TestType" class="control-label"></label>
+               @* <select asp-for="TestType" name="TestType" class="form-control" asp-items="(@ViewBag.labtests)"></select>*@
+                <select asp-for="TestType" name="TestType" class="form-control" asp-items="(@ViewBag.labtests)"></select>
+                <span asp-validation-for="TestType" class="text-danger"></span>
+            </div>
+                @*<div class="form-group">
+                        <label asp-for="TestAmount" class="control-label"></label>
+                        <input asp-for="TestAmount" class="form-control" />
+                        <span asp-validation-for="TestAmount" class="text-danger"></span>
+                    </div>*@
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="showpatientdetails">Back to List</a>
+    </div>
+

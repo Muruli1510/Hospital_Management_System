@@ -1,0 +1,124 @@
+﻿@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+@using X.PagedList.Mvc;
+@*@addTagHelper *, PagedList.Core.Mvc*@
+
+@model IPagedList<Entity_Model_Layer.Models.Patient>
+
+
+
+@{
+    ViewData["Title"] = "showpatientdetails";
+}
+
+<h1 style="text-align:center">Patient's Details</h1>
+
+
+<div class="container">
+    <a asp-action="insertpatient">Create New</a>
+    <a asp-action="validatepid">Add Lab</a>
+    <a asp-action="showbilldetails">View Bills</a>
+</div>
+<div class="container">        
+           <div class="col-md-8" style="width: 1100px; ">
+                @using (Html.BeginForm("showpatientbyid", "UI", FormMethod.Get))
+                {
+                    <p>
+                        Enter Patient Id: @Html.TextBox("PatientId")
+                        <input type="submit" value="Search" />
+                    </p>
+                }
+            </div>
+        @using (Html.BeginForm("getpatientbyname", "UI", FormMethod.Get))
+        {
+            <p>
+                Search Patient by name: @Html.TextBox("Pname")
+                <input type="submit" value="Search" />
+            </p>
+        }
+</div>
+
+<div>
+    <table class="table" border="1">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().PatientId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().PName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().AGe)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().PWeight)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().Gender)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().PAddress)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().PType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().PhoneNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().Disease)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().Doctor)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PatientId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AGe)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PWeight)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Gender)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PAddress)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PhoneNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Disease)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DoctorId)
+                    </td>
+                    <td>
+                        <a asp-action="updatepatientdetails" asp-route-PatientId="@item.PatientId">Edit</a> |
+                        @*<a asp-action="Details" asp-route-id="@item.PatientId">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.PatientId">Delete</a>*@
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @Html.PagedListPager(Model, page => Url.Action("UI", "showpatientdetails", new { page }))
+    @*<pager class="pager-container" list="@Model" options="@PagedListRenderOptions.TwitterBootstrapPager" asp-action="Index" asp-controller="ControllerName" />*@
+</div>
